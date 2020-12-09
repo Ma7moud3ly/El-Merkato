@@ -1,8 +1,9 @@
 /**
  * El Merkato الميركاتو -
- * @author  Mahmoud Aly
+ *
+ * @author Mahmoud Aly
  * @version 1.0
- * @since   2020-12-04
+ * @since 2020-12-04
  */
 package com.ma7moud3ly.elmerkato.models;
 
@@ -29,11 +30,11 @@ public class ProductViewModel extends ViewModel {
     private FavouriteRepository favRepo;
 
     @Inject
-    public ProductViewModel(CompaniesRepository repo) {
+    public ProductViewModel(CompaniesRepository repo, FavouriteRepository favRepo) {
         this.repo = repo;
         company = repo.company;
-        favRepo = new FavouriteRepository(App.getContext());
-        isFaved = favRepo.exists;
+        this.favRepo = favRepo;
+        isFaved = this.favRepo.exists;
     }
 
     public void readCompany(String id) {

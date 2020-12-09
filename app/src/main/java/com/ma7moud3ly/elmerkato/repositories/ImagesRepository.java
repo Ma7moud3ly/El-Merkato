@@ -54,8 +54,8 @@ public class ImagesRepository {
         if (!loadImages) return;
         RequestOptions options = new RequestOptions()
                 .centerCrop()
-                .placeholder(R.drawable.background)
-                .error(R.drawable.background);
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher);
         Glide.with(App.getContext()).load(url).apply(options).into(imageView);
     }
 

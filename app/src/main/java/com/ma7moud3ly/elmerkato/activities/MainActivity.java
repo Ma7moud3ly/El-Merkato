@@ -179,7 +179,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void getSettings() {
-        uiState.split.set(pref.get("split", CONSTANTS.DOUBLE));
+        uiState.split.set(pref.get("split", CONSTANTS.SINGLE));
         uiState.showImages.set(pref.get("show_images", true));
         ImagesRepository.loadImages = uiState.showImages.get();
 

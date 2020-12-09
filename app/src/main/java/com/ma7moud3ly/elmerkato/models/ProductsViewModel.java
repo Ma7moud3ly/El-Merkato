@@ -6,10 +6,6 @@
  */
 package com.ma7moud3ly.elmerkato.models;
 
-import com.ma7moud3ly.elmerkato.App;
-import com.ma7moud3ly.elmerkato.repositories.CategoriesRepository;
-import com.ma7moud3ly.elmerkato.repositories.Category;
-import com.ma7moud3ly.elmerkato.repositories.Company;
 import com.ma7moud3ly.elmerkato.repositories.MyPager;
 import com.ma7moud3ly.elmerkato.repositories.Product;
 import com.ma7moud3ly.elmerkato.repositories.ProductsRepository;
