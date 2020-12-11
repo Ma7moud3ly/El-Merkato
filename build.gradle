@@ -18,7 +18,6 @@ ext {
     glideVersion = '4.11.0'
     gsonVersion = '2.8.6'
     daggerVersion = '2.30.1'
-    firebaseVersion = '19.5.1'
 }
 
 allprojects {

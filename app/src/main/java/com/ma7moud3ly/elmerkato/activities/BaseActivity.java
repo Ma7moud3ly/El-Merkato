@@ -17,10 +17,17 @@ import android.os.Handler;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.ma7moud3ly.elmerkato.App;
 import com.ma7moud3ly.elmerkato.R;
 import com.ma7moud3ly.elmerkato.adapters.SliderAdapter;
 import com.ma7moud3ly.elmerkato.di.ActivityGraph;
 import com.ma7moud3ly.elmerkato.di.ViewModelFactory;
+import com.ma7moud3ly.elmerkato.interfaces.ActivityCallbacks;
 import com.ma7moud3ly.elmerkato.observables.UiState;
 import com.ma7moud3ly.elmerkato.util.CONSTANTS;
 import com.ma7moud3ly.ustore.UPref;
@@ -31,6 +38,7 @@ import java.util.TimerTask;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -38,7 +46,7 @@ import androidx.viewpager.widget.ViewPager;
 import me.relex.circleindicator.CircleIndicator;
 
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements ActivityCallbacks {
     @Inject
     public ViewModelFactory viewModelFactory;
     @Inject
@@ -47,7 +55,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     public UPref pref;
 
     public ActivityGraph activityGraph;
+    public FirebaseAuth firebaseAuth;
 
+    //sign in anonymously to firebase
+    public void login() {
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.signInAnonymously()
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        onLogin(firebaseAuth.getCurrentUser());
+                    } else {
+                        App.l("signInAnonymously:failure" + task.getException());
+                        App.toast(getString(R.string.no_ie_connection));
+                        finish();
+                    }
+                });
+    }
 
     //hide keyboard programmatically
     public void hideKeyboard() {
@@ -59,16 +82,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-
     private int currentPage = 0;
 
     /**
      * init an image slider
-     * @param images: a list of images to show in the slider
-     * @param slider: slider(ViewPager) view
+     *
+     * @param images:    a list of images to show in the slider
+     * @param slider:    slider(ViewPager) view
      * @param indicator: current slide indicator
-     * @param loadFrom: load slider images from which directory of database
-     * @param slide: automatic slide
+     * @param loadFrom:  load slider images from which directory of database
+     * @param slide:     automatic slide
      **/
     public void initImageSlider(List<String> images, ViewPager slider, CircleIndicator indicator, String loadFrom, boolean slide) {
         try {
@@ -102,8 +125,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * send a contact to call page
-     * @param  contact: phone number
-     * */
+     *
+     * @param contact: phone number
+     */
     public void call(String contact) {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, CONSTANTS.REQUEST_PHONE_CALL);
@@ -143,5 +167,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onLogin(FirebaseUser user) {
 
+    }
 }

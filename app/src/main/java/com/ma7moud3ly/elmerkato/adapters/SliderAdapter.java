@@ -1,8 +1,9 @@
 /**
  * El Merkato الميركاتو -
- * @author  Mahmoud Aly
+ *
+ * @author Mahmoud Aly
  * @version 1.0
- * @since   2020-12-04
+ * @since 2020-12-04
  */
 package com.ma7moud3ly.elmerkato.adapters;
 
@@ -50,10 +51,10 @@ public class SliderAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup view, int position) {
         Context context = view.getContext();
         View layout = LayoutInflater.from(context).inflate(R.layout.item_slide, view, false);
-        final ImageView img = layout.findViewById(R.id.slider_image);
-        img.setOnClickListener(v -> {
+        final ImageView imageView = layout.findViewById(R.id.slider_image);
+        imageView.setOnClickListener(v -> {
             try {
-                Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
+                Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
@@ -64,12 +65,7 @@ public class SliderAdapter extends PagerAdapter {
                 e.printStackTrace();
             }
         });
-        if (loadImagesFrom.equals(CONSTANTS.FROM_COMPANIES))
-            ImagesRepository.loadCompanyImage(images.get(position), img);
-        else if (loadImagesFrom.equals(CONSTANTS.FROM_PRODUCTS))
-            ImagesRepository.loadProductImage(images.get(position), img);
-        else if (loadImagesFrom.equals(CONSTANTS.FROM_ADS))
-            ImagesRepository.loadAdsImage(images.get(position), img);
+        ImagesRepository.loadImage(loadImagesFrom, images.get(position), imageView);
         view.addView(layout, 0);
         return layout;
     }

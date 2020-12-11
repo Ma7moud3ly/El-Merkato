@@ -16,6 +16,7 @@ import com.ma7moud3ly.elmerkato.R;
 import com.ma7moud3ly.elmerkato.activities.MainActivity;
 import com.ma7moud3ly.elmerkato.databinding.SectionRecyclerBinding;
 import com.ma7moud3ly.elmerkato.di.ViewModelFactory;
+import com.ma7moud3ly.elmerkato.interfaces.FragmentCallbacks;
 import com.ma7moud3ly.elmerkato.observables.UiState;
 import com.ma7moud3ly.elmerkato.util.CONSTANTS;
 import com.ma7moud3ly.elmerkato.util.CheckInternet;
@@ -27,10 +28,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BaseFragment extends Fragment implements MyCallbacks {
+public class BaseFragment extends Fragment implements FragmentCallbacks {
     public RecyclerView recyclerView;
     public RecyclerView.Adapter recyclerAdapter;
     public SectionRecyclerBinding binding;

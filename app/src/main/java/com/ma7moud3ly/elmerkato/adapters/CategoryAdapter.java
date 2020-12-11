@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.ma7moud3ly.elmerkato.databinding.ItemCategoryBinding;
 import com.ma7moud3ly.elmerkato.observables.UiState;
 import com.ma7moud3ly.elmerkato.repositories.Category;
+import com.ma7moud3ly.elmerkato.repositories.ImagesRepository;
 
 import java.util.List;
 

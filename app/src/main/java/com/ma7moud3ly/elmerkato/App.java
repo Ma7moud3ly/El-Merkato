@@ -13,10 +13,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 
 public class App extends Application {
     private static Context context;
+    private static StorageReference storageReference;
     private final static String DEBUG_TAG = "HINT";
 
     @Override
@@ -24,6 +27,7 @@ public class App extends Application {
         super.onCreate();
         this.context = getApplicationContext();
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public static void toast(Object o) {
@@ -37,6 +41,10 @@ public class App extends Application {
 
     public static Context getContext() {
         return context;
+    }
+
+    public static StorageReference getStorageReference() {
+        return storageReference;
     }
 
 

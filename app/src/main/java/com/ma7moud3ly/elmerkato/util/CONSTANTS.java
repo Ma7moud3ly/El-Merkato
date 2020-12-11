@@ -22,7 +22,7 @@ public class CONSTANTS {
     public static final String FROM_CATEGORIES = "category";
     public static final String FROM_COMPANIES = "company";
     public static final String FROM_DEPARTMENTS = "department_id";
-    public static final String FROM_PRODUCTS = "product";
+    public static final String FROM_PRODUCTS = "products";
     public static final String FROM_ADS = "ads";
 
     public static final int REQUEST_PHONE_CALL = 1;

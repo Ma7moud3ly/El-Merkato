@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseUser;
 import com.ma7moud3ly.elmerkato.R;
 import com.ma7moud3ly.elmerkato.databinding.ActivityMainBinding;
 import com.ma7moud3ly.elmerkato.databinding.SectionAppContentBinding;
@@ -58,11 +59,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         //restore saved settings in the shared prefs
         getSettings();
-
+        //init some views..
         initHeader();
         initNavigationLayout();
+
+        //sign-in anonymously to firebase
+        login();
+    }
+
+    @Override
+    public void onLogin(FirebaseUser user) {
         //navigate HomeFragment as home page
         navigateTo(new HomeFragment(), null, false);
+
     }
 
     //init app bar, and search box
@@ -139,8 +148,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     /**
      * Navigate to the given fragment.
-     * @param fragment: Fragment to navigate to.
-     * @param bundle: to pass arguments with the fragment
+     *
+     * @param fragment:       Fragment to navigate to.
+     * @param bundle:         to pass arguments with the fragment
      * @param addToBackStack: Whether or not the current fragment should be added to the backStack.
      */
     public void navigateTo(Fragment fragment, Bundle bundle, boolean addToBackStack) {
@@ -182,6 +192,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         uiState.split.set(pref.get("split", CONSTANTS.SINGLE));
         uiState.showImages.set(pref.get("show_images", true));
         ImagesRepository.loadImages = uiState.showImages.get();
-
     }
 }

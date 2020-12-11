@@ -40,7 +40,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.MyVi
         Company company = list.get(position);
         holder.binding.setCompany(company);
         if (company.images != null && company.images.size() > 0)
-            ImagesRepository.loadCompanyImage(company.images.get(0), holder.binding.companyImage);
+            ImagesRepository.loadImage("company",company.images.get(0), holder.binding.companyImage);
     }
 
     @Override

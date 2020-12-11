@@ -1,8 +1,9 @@
 /**
  * El Merkato الميركاتو -
- * @author  Mahmoud Aly
+ *
+ * @author Mahmoud Aly
  * @version 1.0
- * @since   2020-12-04
+ * @since 2020-12-04
  */
 package com.ma7moud3ly.elmerkato.adapters;
 
@@ -43,8 +44,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         holder.binding.setProduct(product);
 
         if (product.images.size() > 0)
-            ImagesRepository.loadProductImage(product.images.get(0), holder.binding.productItemImage);
-
+            ImagesRepository.loadImage("products", product.images.get(0), holder.binding.productItemImage);
     }
 
     @Override

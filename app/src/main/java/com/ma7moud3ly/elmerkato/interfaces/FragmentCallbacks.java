@@ -4,9 +4,9 @@
  * @version 1.0
  * @since   2020-12-04
  */
-package com.ma7moud3ly.elmerkato.fragments;
+package com.ma7moud3ly.elmerkato.interfaces;
 
-public interface MyCallbacks {
+public interface FragmentCallbacks {
     public void onSearch(String query);
 
     public void onSearchCleared();

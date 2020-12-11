@@ -1,8 +1,9 @@
 /**
  * El Merkato الميركاتو -
- * @author  Mahmoud Aly
+ *
+ * @author Mahmoud Aly
  * @version 1.0
- * @since   2020-12-04
+ * @since 2020-12-04
  */
 package com.ma7moud3ly.elmerkato.adapters;
 
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.ma7moud3ly.elmerkato.databinding.ItemDepartmentBinding;
 import com.ma7moud3ly.elmerkato.repositories.Category;
+import com.ma7moud3ly.elmerkato.repositories.ImagesRepository;
 
 import java.util.List;
 
@@ -35,7 +37,8 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Category category = list.get(position);
-        holder.binding.setCategory(category);
+        holder.binding.categoryText.setText(category.name);
+        ImagesRepository.loadImage("company/departs", category.image, holder.binding.departmentImage);
     }
 
     @Override
@@ -49,7 +52,7 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.My
         public MyViewHolder(ItemDepartmentBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            setHeight(binding.cardDepartment,5);
+            setHeight(binding.cardDepartment, 5);
         }
 
 
