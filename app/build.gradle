@@ -8,7 +8,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 3
-        versionName "1.1"
+        versionName "2"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     buildTypes {
@@ -51,6 +51,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
+
     //dagger
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"

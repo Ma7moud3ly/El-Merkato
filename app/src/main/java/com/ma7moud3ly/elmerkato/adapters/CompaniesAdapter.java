@@ -1,8 +1,9 @@
 /**
  * El Merkato الميركاتو -
- * @author  Mahmoud Aly
+ *
+ * @author Mahmoud Aly
  * @version 1.0
- * @since   2020-12-04
+ * @since 2020-12-04
  */
 package com.ma7moud3ly.elmerkato.adapters;
 
@@ -40,7 +41,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.MyVi
         Company company = list.get(position);
         holder.binding.setCompany(company);
         if (company.images != null && company.images.size() > 0)
-            ImagesRepository.loadImage("company",company.images.get(0), holder.binding.companyImage);
+            ImagesRepository.loadImage(holder.binding.companyImage, "company/" + company.images.get(0));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesAdapter.MyVi
         public MyViewHolder(ItemCompanyBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            setHeight(binding.cardCompany,4);
+            setHeight(binding.cardCompany, 4);
 
         }
     }

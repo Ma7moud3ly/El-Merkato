@@ -38,7 +38,7 @@ public class DepartmentAdapter extends RecyclerView.Adapter<DepartmentAdapter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Category category = list.get(position);
         holder.binding.categoryText.setText(category.name);
-        ImagesRepository.loadImage("company/departs", category.image, holder.binding.departmentImage);
+        ImagesRepository.loadImage(holder.binding.departmentImage, "company/departs/" + category.image);
     }
 
     @Override

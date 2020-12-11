@@ -65,7 +65,7 @@ public class SliderAdapter extends PagerAdapter {
                 e.printStackTrace();
             }
         });
-        ImagesRepository.loadImage(loadImagesFrom, images.get(position), imageView);
+        ImagesRepository.loadImage(imageView, loadImagesFrom + "/" + images.get(position));
         view.addView(layout, 0);
         return layout;
     }

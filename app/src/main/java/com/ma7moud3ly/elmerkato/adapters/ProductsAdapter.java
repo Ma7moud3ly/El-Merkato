@@ -44,7 +44,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.MyView
         holder.binding.setProduct(product);
 
         if (product.images.size() > 0)
-            ImagesRepository.loadImage("products", product.images.get(0), holder.binding.productItemImage);
+            ImagesRepository.loadImage(holder.binding.productItemImage, "products/" + product.images.get(0));
     }
 
     @Override
